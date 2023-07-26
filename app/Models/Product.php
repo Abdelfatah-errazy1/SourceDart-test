@@ -12,4 +12,10 @@ class Product extends Model
     // adding fillable for mass assiement
     protected $fillable=['name','description','price','image'];
 
+    // relationship to the category model
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
 }

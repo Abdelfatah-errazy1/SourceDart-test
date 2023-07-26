@@ -24,7 +24,7 @@ class CreateProduct extends Command
             'price' => $price,
             'category_id' => $categoryId,
         ]);
-
+        // Output success message
         $this->info("Product '$name' created successfully.");
     }
 }
