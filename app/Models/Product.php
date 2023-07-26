@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    // adding fillable for mass assiement
+    protected $fillable=['name','description','price','image'];
+
 }
