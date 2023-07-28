@@ -10,8 +10,26 @@ class EloquentProductRepository implements ProductRepositoryInterface
 {
     public function getPaginatedProducts($sortBy, $category)
     {
-        // Implement the logic to fetch paginated products with sorting and filtering
-        // based on $sortBy and $category using Eloquent queries
+      $query = Product::query();
+
+      // Sort products based on the provided column and direction
+      if ($sortBy === 'name') {
+          $query->orderBy('name');
+      } elseif ($sortBy === 'price') {
+          $query->orderBy('price');
+      }
+
+      // Filter products based on the selected category
+      if ($category) {
+          $query->whereHas('categories', function ($q) use ($category) {
+              $q->where('id', $category);
+          });
+      }
+
+      // Paginate the products with a fixed number of items per page
+      $perPage = 6; // You can change this to your desired value
+      return $query->paginate($perPage);
+  
     }
 
     public function createProduct(array $data, $imagePath)
