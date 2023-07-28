@@ -1,6 +1,7 @@
-// app/Interfaces/ProductServiceInterface.php
 <?php
+
 namespace App\Interfaces;
+// app/Interfaces/ProductServiceInterface.php
 
 interface ProductServiceInterface
 {
