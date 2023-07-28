@@ -19,13 +19,15 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         // Get the sorting and filtering parameters from the request
-        $sortBy = $request->input('sort_by', 'name'); // Default sorting by name
+        $sortBy = $request->input('sort', 'name'); // Default sorting by name
         $category = $request->input('category');
 
         // Fetch paginated products with sorting and filtering
         $products = $this->productService->getPaginatedProducts($sortBy, $category);
         $categories = $this->productService->getAllCategories();
-
+        $products->appends(['category' => $category]);
+        $products->appends(['sort' => $sortBy]);
+        // dd($products);
         // Return the view with the paginated product list
         return view('pages.products.index', compact('products','categories'));
     }

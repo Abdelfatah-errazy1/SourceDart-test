@@ -13,6 +13,7 @@ class EloquentProductRepository implements ProductRepositoryInterface
       $query = Product::query();
 
       // Sort products based on the provided column and direction
+    //   dd($sortBy);
       if ($sortBy === 'name') {
           $query->orderBy('name');
       } elseif ($sortBy === 'price') {
@@ -23,11 +24,11 @@ class EloquentProductRepository implements ProductRepositoryInterface
       if ($category) {
           $query->whereHas('categories', function ($q) use ($category) {
               $q->where('id', $category);
-          });
+            });
       }
 
       // Paginate the products with a fixed number of items per page
-      $perPage = 6; // You can change this to your desired value
+      $perPage = 6; 
       return $query->paginate($perPage);
   
     }
@@ -38,7 +39,11 @@ class EloquentProductRepository implements ProductRepositoryInterface
         $product = new Product($data);
         $product->image = $imagePath;
         $product->save();
-
+        
+        if (isset($data['categories'])) {
+            $categories = Category::whereIn('id', $data['categories'])->get();
+            $product->categories()->attach($categories);
+        }
         // Return the newly created product
         return $product;
     }
