@@ -24,9 +24,10 @@ class ProductController extends Controller
 
         // Fetch paginated products with sorting and filtering
         $products = $this->productService->getPaginatedProducts($sortBy, $category);
+        $categories = $this->productService->getAllCategories();
 
         // Return the view with the paginated product list
-        return view('products.index', compact('products'));
+        return view('pages.products.index', compact('products','categories'));
     }
 
     public function create()
@@ -35,9 +36,9 @@ class ProductController extends Controller
         $categories = $this->productService->getAllCategories();
 
         // Return the view with the form to create a product
-        return view('products.create', compact('categories'));
+        return view('pages.products.create', compact('categories'));
     }
-    
+
     public function edit($productId)
     {
         // Get the product details from the service based on the product ID
@@ -47,7 +48,7 @@ class ProductController extends Controller
         $categories = $this->productService->getAllCategories();
 
         // Pass the product and categories data to the view
-        return view('products.edit', compact('product', 'categories'));
+        return view('pages.products.edit', compact('product', 'categories'));
     }
 
     public function store(Request $request)
