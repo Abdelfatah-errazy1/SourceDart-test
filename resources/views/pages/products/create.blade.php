@@ -42,7 +42,7 @@
                     <label for="price">Price</label>
                     <input type="number" name="price" id="price" class="form-control" step="0.01" required>
                     <x-error-message field="price" />
-                  </div>
+                </div>
               
                 <div class="form-group">
                     <label for="categories">Categories</label>
