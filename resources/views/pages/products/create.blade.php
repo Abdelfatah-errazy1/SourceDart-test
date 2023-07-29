@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control" required>
-                    <x-error-message field="name" />r
+                    <x-error-message field="name" />
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
@@ -65,14 +65,5 @@
     </div>
 </div>
 </section>
-<script>
-  var image=document.getElementById('image')
-  console.log(image);
-  var imageProduct=document.getElementById('imageProduct')
-  image.onchange=()=>{
-    const file = image.files[0];
-    imageProduct.src = URL.createObjectURL(file);
-  }
-</script>
 @endsection
 

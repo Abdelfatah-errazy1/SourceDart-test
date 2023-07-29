@@ -1,5 +1,3 @@
-import './bootstrap';
-
 var image=document.getElementById('image')
 console.log(image);
 var imageProduct=document.getElementById('imageProduct')
