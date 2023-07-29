@@ -29,22 +29,20 @@
                     </label>
                   </div>
                   <input type="file" hidden name="image" id="image" value="{{ old('image') }}" class="border border-gray-400 p-2 rounded-lg hover:ring focus:outline-none w-100">
-                  @error('image')
-                    <div class="text-danger my-2">
-                      {{ $message }}
-                    </div>
-                  @enderror
+                  <x-error-message field="image" />
                 </div>
                 
 
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control" required>
+                    <x-error-message field="name" />r
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
                     <input type="number" name="price" id="price" class="form-control" step="0.01" required>
-                </div>
+                    <x-error-message field="price" />
+                  </div>
               
                 <div class="form-group">
                     <label for="categories">Categories</label>
@@ -53,11 +51,13 @@
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
+                    <x-error-message field="categories" />
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
-                </div>
+                    <x-error-message field="description" />
+                  </div>
                 
                 <button type="submit" class="btn btn-primary">Create</button>
             </form>
