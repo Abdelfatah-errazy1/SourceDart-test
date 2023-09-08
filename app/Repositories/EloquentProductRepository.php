@@ -13,7 +13,6 @@ class EloquentProductRepository implements ProductRepositoryInterface
       $query = Product::query();
 
       // Sort products based on the provided column and direction
-    //   dd($sortBy);
       if ($sortBy === 'name') {
           $query->orderBy('name');
       } elseif ($sortBy === 'price') {
